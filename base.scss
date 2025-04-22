@@ -18,6 +18,22 @@
     font-family: "Light";
     src: url("font/Light/light.ttf") format("truetype");
 }
+@keyframes TopToBottom {
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+@keyframes BottomToTop {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-300%);
+    }
+}
 a{
     color: #333333;
     
@@ -33,14 +49,16 @@ a{
     gap: 60px;
 
     &-object{
+        font-family: "Light";
+        font-weight: 700;
         text-decoration: none;
         height: 22px;
-        border-bottom: 1px solid #ffffff;
-        border-top: 1px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        border-top: 2px solid #ffffff;
         
         &:hover{
-            border-bottom: 1px solid #333333;
-            border-top: 1px solid #333333;
+            border-bottom: 2px solid gray;
+            border-top: 2px solid gray;
         }
     }
 }
@@ -54,5 +72,52 @@ a{
     &-2{
 
         font-family: "Bold";
+    }
+}
+.modal{
+    &-window{
+        top: 30%;
+        width: 24%;
+        max-height: 400px;
+        padding: 20px;
+        left: 40%;
+        z-index: 2;
+        display: none;
+        margin: 0 auto;
+        position: fixed;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        border: 15px solid gray;
+        text-align: center;
+        &-active{
+            animation: TopToBottom 0.6s;
+        }
+        &-deActive{
+            animation: BottomToTop 0.6s;
+        }
+        p{
+            font-family: "Regular";
+            color: gray;
+        }
+        h1{
+            font-family: "Regular";
+            font-weight: 700;
+            font-size: 24px;
+            color: gray;
+        }
+        button{
+            border: none;
+            font-family: "Regular";
+            font-weight: 700;
+            font-size: 20px;
+            color: gray;
+            transition: 0.3s;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
     }
 }
