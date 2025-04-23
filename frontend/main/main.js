@@ -24,14 +24,8 @@ const projectsData = [{
         img: "../projects-data/test-project/LakeHouse_Ext_106_HR_Pool_002_sa_HR.jpg"
     },
 ]
-document.querySelector("#slide-count-max").textContent = String(slides.length).padStart(2, '0')
-function updateSlide(currentSlide){
-    slides.forEach(el =>{
-        el.style.transform = `translateX(-${currentSlide * el.clientWidth}px)`
-    })
-    currentSlideInfo.textContent = String(currentSlide + 1).padStart(2, '0');
-}
 
+document.querySelector("#slide-count-max").textContent = String(slides.length).padStart(2, '0')
 document.querySelector("#right").addEventListener("click", ()=>{
     if(currentSlide < slides.length - 1){
         currentSlide += 1
@@ -61,6 +55,32 @@ Array.from(document.querySelectorAll(".projects-img")).forEach(el => el.addEvent
     ModalWindow(target)
 }))
 
+document.querySelector("#info").addEventListener("click", ()=>{
+    const doc = window.open('', '_self', 'biba')
+    doc.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="main.css">
+            <link rel="stylesheet" href="../base.css">
+            <title>Main</title>
+        </head>
+        <body>
+            <h1 class="text-head-1">Aboba</h1>
+        </body>`);
+        console.log(doc)
+        console.log(document)
+    doc.document.close()
+})
+
+function updateSlide(currentSlide){
+    slides.forEach(el =>{
+        el.style.transform = `translateX(-${currentSlide * el.clientWidth}px)`
+    })
+    currentSlideInfo.textContent = String(currentSlide + 1).padStart(2, '0');
+}
 
 function displayBlock(arg){
     if(arg){
@@ -78,6 +98,7 @@ function displayBlock(arg){
         })
     }
 }
+
 function ModalWindow(target){
     displayBlock(true)
     modalWindow.style.display = "block"
