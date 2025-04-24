@@ -27,6 +27,7 @@
                 text-decoration:underline;
             }
         }
+        
     }
     &-info{
         padding: 70px;
@@ -114,4 +115,22 @@
             transform: scale(1.1);
         }
     }
+    button{
+        padding: 10px; 
+        margin-left: auto;
+        padding-top: 0;
+        color: white;
+        font-family: 'Light';
+        border: none;
+        background-color: black;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover{
+            background-color: gray;
+        }
+    }
+}
+.form{
+    max-width: 1300px;
+    margin: 0 auto;
 }

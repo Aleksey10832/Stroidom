@@ -139,3 +139,23 @@
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
+.projects button {
+  padding: 10px;
+  margin-left: auto;
+  padding-top: 0;
+  color: white;
+  font-family: "Light";
+  border: none;
+  background-color: black;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.projects button:hover {
+  background-color: gray;
+}
+
+.form {
+  max-width: 1300px;
+  margin: 0 auto;
+}
