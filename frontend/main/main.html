@@ -8,15 +8,7 @@
     <title>Main</title>
 </head>
 <body>
-    <header style="display: flex;">
-        <img src="../logo.png" height="102px">
-        <div class="nav-menu">
-            <a class="nav-menu-object" href="">ГЛАВНАЯ</a>
-            <a class="nav-menu-object" href="">ГАЛЛЕРЕЯ</a>
-            <a class="nav-menu-object" href="">ПРОЕКТЫ</a>
-            <a class="nav-menu-object" href="">КОНТАКТЫ</a>
-        </div>
-   </header>
+    <header></header>
    <section class="modal-window">
 
    </section>
@@ -88,12 +80,19 @@
         <div style="display: flex;"><button style="">ВСЕ ПРОЕКТЫ<img style="top: 7px; position: relative;" src="imgs/arrow-white.png"></button></div>
    </section>
    <section class="form">
-        <h1 class="text-head-1">Связаться с нами</h1>
-        <div>
-            
+        <h1 class="text-head-1 form-head">Связаться с нами</h1>
+        <div class="form-inputs">
+            <input class="form-input" type="text" placeholder="Имя">
+            <input class="form-input" type="text" placeholder="Номер телефона">
+            <input class="form-input" type="text" placeholder="E-mail">
+            <input class="form-input" type="text" placeholder="Каким проектом вы заинтересованны?">
+            <textarea class="form-input" style="height: 150px;" cols="50" rows="20" placeholder="Сообщение"></textarea>
+            <button>ОТПРАВИТЬ ПИСЬМО</button>
         </div>
+        <img class="form-img" src="imgs/image 12.png" alt="None">
    </section>
    <footer></footer>
    <script src="main.js"></script>
+   <script src="../autoHeader&Footer.js"></script>
 </body>
 </html>
