@@ -1,0 +1,30 @@
+import { Controller, Get, Post, Query, Body, UseInterceptors, UploadedFiles, Delete } from '@nestjs/common';
+import { ProjectsService } from './projects.service';
+import { CreateProjectDto } from './dto/create-project-dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
+
+@Controller('projects')
+export class ProjectsController {
+  constructor(private readonly projectService: ProjectsService) {}
+
+  @Get()
+  async getProjects(@Query('page') page: number) {
+    if(page){
+        return await this.projectService.getPaginatedProjects(page);
+    }
+    else{return await this.projectService.getCount()}
+  }
+
+  @Post()
+  @UseInterceptors(FilesInterceptor('files')) // 'files' - имя поля для загрузки файлов
+  async createProject(
+    @UploadedFiles() files: Express.Multer.File[],
+    @Body() createProjectDto: CreateProjectDto
+  ) {
+    return await this.projectService.createProject(createProjectDto, files);
+  }
+  @Delete()
+  async deleteProject(){
+    return await this.projectService.deleteAllProjects()
+  }
+}

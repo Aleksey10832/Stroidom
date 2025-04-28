@@ -5,8 +5,9 @@ import { CatModule } from './cat/cat.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { CatController } from './cat/cat.controller';
 import { PrismaService } from './prisma/prisma.service';
+import { ProjectsModule } from './projects/projects.module';
 @Module({
-  imports: [CatModule],
+  imports: [CatModule, ProjectsModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
