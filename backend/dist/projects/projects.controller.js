@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const projects_service_1 = require("./projects.service");
 const create_project_dto_1 = require("./dto/create-project-dto");
 const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
+const crypto_1 = require("crypto");
 let ProjectsController = class ProjectsController {
     projectService;
     constructor(projectService) {
@@ -33,7 +35,10 @@ let ProjectsController = class ProjectsController {
     async createProject(files, createProjectDto) {
         return await this.projectService.createProject(createProjectDto, files);
     }
-    async deleteProject() {
+    async deleteProject(projectId) {
+        if (projectId) {
+            return await this.projectService.deleteProjectById(+projectId);
+        }
         return await this.projectService.deleteAllProjects();
     }
 };
@@ -47,7 +52,14 @@ __decorate([
 ], ProjectsController.prototype, "getProjects", null);
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('files')),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('files', 4, {
+        storage: (0, multer_1.diskStorage)({
+            destination: 'public',
+            filename: (res, file, cd) => {
+                cd(null, (0, crypto_1.randomUUID)() + file.originalname);
+            },
+        }),
+    })),
     __param(0, (0, common_1.UploadedFiles)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -56,8 +68,9 @@ __decorate([
 ], ProjectsController.prototype, "createProject", null);
 __decorate([
     (0, common_1.Delete)(),
+    __param(0, (0, common_1.Query)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "deleteProject", null);
 exports.ProjectsController = ProjectsController = __decorate([

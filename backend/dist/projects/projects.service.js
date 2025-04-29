@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const fs = require("fs/promises");
+const path_1 = require("path");
 let ProjectsService = class ProjectsService {
     prisma;
     constructor(prisma) {
@@ -23,34 +25,52 @@ let ProjectsService = class ProjectsService {
             skip,
             take: 3,
             orderBy: { id: 'asc' },
-            include: { images: true }
+            include: { images: true },
         });
     }
     async createProject(projectDto, files) {
-        const images = files.map(file => ({
-            path: `/uploads/projects/${file.filename}`,
-            filename: file.filename,
-            originalName: file.originalname
-        }));
-        return this.prisma.project.create({
+        const boba = await this.prisma.project.create({
             data: {
                 name: projectDto.name,
                 description: projectDto.description,
-                images: {
-                    create: images
-                }
             },
-            include: {
-                images: true
-            }
         });
+        const filesList = files.map((el) => ({
+            originalName: el.originalname,
+            path: el.path,
+            fileName: el.filename,
+            projectId: boba.id,
+        }));
+        await this.prisma.image.createMany({
+            data: filesList,
+        });
+        return boba;
     }
     async getCount() {
         const count = await this.prisma.project.count();
         return { count: count };
     }
     async deleteAllProjects() {
+        const fileNames = await this.prisma.image.findMany();
+        for (const el of fileNames) {
+            await fs.rm((0, path_1.join)(__dirname, '../..', `public/${el.fileName}`));
+        }
+        await this.prisma.image.deleteMany();
         return await this.prisma.project.deleteMany();
+    }
+    async deleteProjectById(id) {
+        const fileNames = await this.prisma.image.findMany({
+            where: { projectId: id },
+        });
+        for (const el of fileNames) {
+            await fs.rm((0, path_1.join)(__dirname, '../..', `public/${el.fileName}`));
+        }
+        await this.prisma.image.deleteMany({
+            where: { projectId: id },
+        });
+        return await this.prisma.project.delete({
+            where: { id: id },
+        });
     }
 };
 exports.ProjectsService = ProjectsService;

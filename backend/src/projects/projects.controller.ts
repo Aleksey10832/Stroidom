@@ -1,7 +1,18 @@
-import { Controller, Get, Post, Query, Body, UseInterceptors, UploadedFiles, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Query,
+  Body,
+  UseInterceptors,
+  UploadedFiles,
+  Delete,
+} from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project-dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { randomUUID } from 'crypto';
 
 @Controller('projects')
 export class ProjectsController {
@@ -9,22 +20,35 @@ export class ProjectsController {
 
   @Get()
   async getProjects(@Query('page') page: number) {
-    if(page){
-        return await this.projectService.getPaginatedProjects(page);
+    if (page) {
+      return await this.projectService.getPaginatedProjects(page);
+    } else {
+      return await this.projectService.getCount();
     }
-    else{return await this.projectService.getCount()}
   }
 
   @Post()
-  @UseInterceptors(FilesInterceptor('files')) // 'files' - имя поля для загрузки файлов
+  @UseInterceptors(
+    FilesInterceptor('files', 4, {
+      storage: diskStorage({
+        destination: 'public',
+        filename: (res, file, cd) => {
+          cd(null, randomUUID() + file.originalname);
+        },
+      }),
+    }),
+  )
   async createProject(
     @UploadedFiles() files: Express.Multer.File[],
-    @Body() createProjectDto: CreateProjectDto
+    @Body() createProjectDto: CreateProjectDto,
   ) {
     return await this.projectService.createProject(createProjectDto, files);
   }
   @Delete()
-  async deleteProject(){
-    return await this.projectService.deleteAllProjects()
+  async deleteProject(@Query('id') projectId: string) {
+    if (projectId) {
+      return await this.projectService.deleteProjectById(+projectId);
+    }
+    return await this.projectService.deleteAllProjects();
   }
 }

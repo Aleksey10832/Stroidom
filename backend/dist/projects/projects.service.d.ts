@@ -7,8 +7,8 @@ export declare class ProjectsService {
         images: {
             id: number;
             path: string;
-            filename: string;
             originalName: string;
+            fileName: string;
             projectId: number | null;
         }[];
     } & {
@@ -18,14 +18,6 @@ export declare class ProjectsService {
         createdAt: Date;
     })[]>;
     createProject(projectDto: CreateProjectDto, files: Express.Multer.File[]): Promise<{
-        images: {
-            id: number;
-            path: string;
-            filename: string;
-            originalName: string;
-            projectId: number | null;
-        }[];
-    } & {
         id: number;
         name: string;
         description: string | null;
@@ -35,4 +27,10 @@ export declare class ProjectsService {
         count: number;
     }>;
     deleteAllProjects(): Promise<import("generated/prisma").Prisma.BatchPayload>;
+    deleteProjectById(id: number): Promise<{
+        id: number;
+        name: string;
+        description: string | null;
+        createdAt: Date;
+    }>;
 }
