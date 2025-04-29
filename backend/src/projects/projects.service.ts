@@ -13,12 +13,11 @@ export class ProjectsService {
       skip,
       take: 3,
       orderBy: { id: 'asc' },
-      include: { images: true } // Если хотим включать связанные изображения
+      include: { images: true }
     });
   }
 
   async createProject(projectDto: CreateProjectDto, files: Express.Multer.File[]) {
-    // Сохраняем информацию о файлах в базе данных
     const images = files.map(file => ({
       path: `/uploads/projects/${file.filename}`,
       filename: file.filename,

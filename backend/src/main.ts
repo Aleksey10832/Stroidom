@@ -8,7 +8,7 @@ async function bootstrap() {
     prefix: '/public/', // URL-префикс для доступа к файлам
   });
   app.enableCors({
-    origin: 'http://127.0.0.1:5500' // Укажите ваш порт для фронтенда
+    origin: 'http://127.0.0.1:5500'
   });
   await app.listen(process.env.PORT ?? 3000);
 }
