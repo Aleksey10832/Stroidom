@@ -66,7 +66,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
-    width: 1100px;
+    width: 80%;
     padding-left: 70px;
     margin-top: 90px;
     gap: 60px;
@@ -76,6 +76,7 @@
         gap: 10px;
     }
     &-img{
+        max-width: 100%;
         transition: 0.3s;
         border-radius: 6px;
         &:hover{
@@ -84,7 +85,7 @@
     }
     button{
         background-color: white;
-        position: absolute;
+        position: block;
         bottom: 30px;
         border: none;
         display: flex;
@@ -104,6 +105,7 @@
         gap: 20px;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 14px;
     }
     &-img{
         max-width: 400px; 
@@ -164,5 +166,33 @@
         padding: 10px;
         font-family: 'Light';
         border: none;
+    }
+}
+@media(max-width: 1304px){
+    .projects-data{
+        grid-template-columns: 50% 50%;
+    }
+    .form{
+        display: block;
+        padding: 3%;
+        &-img{
+            display: none;
+        }
+        &-input{
+            width: 70%;
+        }
+    }
+}
+@media(max-width: 1062px){
+    .AboutUs{
+        display: block;
+        &-imgs{
+            display: none;
+        }
+    }
+}
+@media(max-width: 924px){
+    .projects-img{
+        max-width: 80%;
     }
 }
