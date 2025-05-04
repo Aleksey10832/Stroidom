@@ -10,6 +10,7 @@ async function bootstrap() {
       'http://127.0.0.1:5500',
       'http://127.0.0.1:8000',
       'http://192.168.0.14:8000',
+      'http://192.168.0.14:3000'
     ],
   });
   app.use('/file', express.static(join(__dirname, '..', 'public')));

@@ -80,6 +80,7 @@ function updateSlide(currentSlide){
         el.style.transform = `translateX(-${currentSlide * el.clientWidth}px)`
     })
     currentSlideInfo.textContent = String(currentSlide + 1).padStart(2, '0');
+    
 }
 
 function displayBlock(arg){
