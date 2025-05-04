@@ -194,6 +194,16 @@
         border: none;
     }
 }
+@media(max-width: 644px){
+    .slide{
+        &-menu{
+            left: 10%;
+        }
+        &-count{
+            margin-top: 10px;
+        }
+    }
+}
 @media(max-width: 1304px){
     .projects-data{
         grid-template-columns: 50% 50%;

@@ -1,6 +1,7 @@
 const slides = Array.from(document.querySelectorAll(".slide"))
 const currentSlideInfo = document.querySelector("#slide-count-current")
 var currentSlide = 0
+const modal = document.querySelector('.modal')
 const modalWindow = document.querySelector(".modal-window")
 const projects = document.querySelector(".projects-data")
 const projectsData = [{
@@ -102,6 +103,8 @@ function displayBlock(arg){
 
 function ModalWindow(target){
     displayBlock(true)
+    modal.style.filter = "blur(0px)"
+    modal.style.display = "block"
     modalWindow.style.display = "block"
     modalWindow.style.filter = "blur(0px)"
     modalWindow.classList.add("modal-window-active")
