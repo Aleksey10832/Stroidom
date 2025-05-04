@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="main/main.css">
+    <link rel="stylesheet" href="base.css">
     <title>Main</title>
 </head>
 <body>
     <header></header>
-   <section class="modal-window">
-
+   <section class="modal">
+        <div class="modal-window"></div>
    </section>
    <section class="slider">
         <div class="slide-menu">
-            <button class="slide-button" id="left"><img src="imgs/arrow-2.png"></button>
-            <button class="slide-button" id="right"><img src="imgs/arrow-1.png"></button>
+            <button class="slide-button" id="left"><img src="main/imgs/arrow-2.png"></button>
+            <button class="slide-button" id="right"><img src="main/imgs/arrow-1.png"></button>
             <div class="slide-count">
                 <h3 id="slide-count-current">01</h3>
                 <h3>/</h3>
@@ -30,8 +30,8 @@
             </div>
             
             <div class="slide-project">
-                <img src="../projects-data/test-project/Rectangle 6.png" width="650px">
-                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
+                <img class="img" src="projects-data/test-project/Rectangle 6.png">
+                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="main/imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
             </div>
         </div>
         <div class="slide">
@@ -41,8 +41,8 @@
             </div>
             
             <div class="slide-project">
-                <img src="../projects-data/test-project/Rectangle 6.png" width="650px">
-                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
+                <img class="img" src="projects-data/test-project/Rectangle 6.png">
+                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="main/imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
             </div>
         </div>
         <div class="slide">
@@ -52,32 +52,33 @@
             </div>
             
             <div class="slide-project">
-                <img src="../projects-data/test-project/Rectangle 6.png" width="650px">
-                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
+                <img class="img" src="projects-data/test-project/Rectangle 6.png">
+                <a href="" class="slide-project-text">О ПРОЕКТЕ <img src="main/imgs/arrow-right.png" style="margin-bottom: -5px;"></a>
             </div>
         </div>
+
    </section>
    <section class="AboutUs">
         <div class="AboutUs-imgs">
-            <img class="AboutUs-img" src="imgs/Rectangle 8.png">
-            <img class="AboutUs-img" src="imgs/Rectangle 9.png">
-            <img class="AboutUs-img" src="imgs/Rectangle 10.png">
+            <img class="AboutUs-img" src="main/imgs/Rectangle 8.png">
+            <img class="AboutUs-img" src="main/imgs/Rectangle 9.png">
+            <img class="AboutUs-img" src="main/imgs/Rectangle 10.png">
         </div>
         <div class="AboutUs-text">
-            <h1 class="text-head-1" style="font-size: 40px;">О нас</h1>
-            <p class="text-head-1" style="font-size: 20px;margin-top: 10px;">Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
+            <h1 class="text-head-1">О нас</h1>
+            <p class="text-head-1">Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
                 Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
                 Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
                 Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
             </p>
-            <button id="info"><h1 class="text-head-1">УЗНАТЬ БОЛЬШЕ</h1><img src="imgs/arrow-right.png"></button>
+            <button id="info"><h2 class="text-head-1">УЗНАТЬ БОЛЬШЕ</h2><img src="main/imgs/arrow-right.png"></button>
         </div>
    </section>
    <section class="projects">
-        <h1 class="text-head-1" style="font-size: 30px; margin-top: 50px;">Наши проекты</h1>
+        <h1 class="text-head-1" style="font-size: 30px; margin-top: 50px;text-align: center;">Наши проекты</h1>
         <div class="projects-data">
         </div>
-        <div style="display: flex;"><button style="">ВСЕ ПРОЕКТЫ<img style="top: 7px; position: relative;" src="imgs/arrow-white.png"></button></div>
+        <div style="display: flex;"><button style="">ВСЕ ПРОЕКТЫ<img style="top: 7px; position: relative;" src="main/imgs/arrow-white.png"></button></div>
    </section>
    <section class="form">
         <h1 class="text-head-1 form-head">Связаться с нами</h1>
@@ -89,10 +90,10 @@
             <textarea class="form-input" style="height: 150px;" cols="50" rows="20" placeholder="Сообщение"></textarea>
             <button>ОТПРАВИТЬ ПИСЬМО</button>
         </div>
-        <img class="form-img" src="imgs/image 12.png" alt="None">
+        <img class="form-img" src="main/imgs/image 12.png" alt="None">
    </section>
    <footer></footer>
-   <script src="main.js"></script>
-   <script src="../autoHeader&Footer.js"></script>
+   <script src="main/main.js"></script>
+   <script src="../autoHeader_Footer.js"></script>
 </body>
 </html>
