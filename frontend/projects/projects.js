@@ -13,7 +13,7 @@ async function Update(currentcount){
     respons.forEach(element => {
         if(element){
             stroka +=`<li class="project"> 
-                    <img width="85%" height="280px" src="http://192.168.0.14:3000/file/${element.images[0].fileName}" alt="404">
+                    <img class="project-img" src="http://192.168.0.14:3000/file/${element.images[0].fileName}" alt="404">
                     <h1 class="text-head-1">${element.name}</h1>
                     <p>${element.description}</p>
                     <button>Узнать больше <img src="imgs/arrow-right.png"></button>
