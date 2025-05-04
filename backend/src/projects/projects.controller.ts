@@ -19,8 +19,10 @@ export class ProjectsController {
   constructor(private readonly projectService: ProjectsService) {}
 
   @Get()
-  async getProjects(@Query('page') page: number) {
-    if (page) {
+  async getProjects(@Query('page') page: number, @Query('id') id: string) {
+    if (id) {
+      return await this.projectService.getProjectById(+id);
+    } else if (page) {
       return await this.projectService.getPaginatedProjects(page);
     } else {
       return await this.projectService.getCount();

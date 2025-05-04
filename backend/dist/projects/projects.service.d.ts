@@ -17,6 +17,20 @@ export declare class ProjectsService {
         description: string | null;
         createdAt: Date;
     })[]>;
+    getProjectById(id: number): Promise<({
+        images: {
+            id: number;
+            path: string;
+            originalName: string;
+            fileName: string;
+            projectId: number | null;
+        }[];
+    } & {
+        id: number;
+        name: string;
+        description: string | null;
+        createdAt: Date;
+    }) | null>;
     createProject(projectDto: CreateProjectDto, files: Express.Multer.File[]): Promise<{
         id: number;
         name: string;

@@ -17,6 +17,15 @@ export class ProjectsService {
     });
   }
 
+  async getProjectById(id: number) {
+    return await this.prisma.project.findUnique({
+      where: {
+        id,
+      },
+      include: { images: true },
+    });
+  }
+
   async createProject(
     projectDto: CreateProjectDto,
     files: Express.Multer.File[],

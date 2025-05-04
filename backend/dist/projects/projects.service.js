@@ -28,6 +28,14 @@ let ProjectsService = class ProjectsService {
             include: { images: true },
         });
     }
+    async getProjectById(id) {
+        return await this.prisma.project.findUnique({
+            where: {
+                id,
+            },
+            include: { images: true },
+        });
+    }
     async createProject(projectDto, files) {
         const boba = await this.prisma.project.create({
             data: {

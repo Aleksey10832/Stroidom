@@ -8,7 +8,6 @@ const projects = document.querySelector("#projects")
 async function Update(currentcount){    
     maxPage.textContent =  Math.ceil(((await (await fetch(`http://192.168.0.14:3000/projects`)).json()).count) / 3).toString().padStart(2, '0')
     const respons = await (await fetch(`http://192.168.0.14:3000/projects?page=${currentCount + 1}`)).json()
-    console.log(respons)
     let stroka = ""
     respons.forEach(element => {
         if(element){
@@ -16,12 +15,17 @@ async function Update(currentcount){
                     <img class="project-img" src="http://192.168.0.14:3000/file/${element.images[0].fileName}" alt="404">
                     <h1 class="text-head-1">${element.name}</h1>
                     <p>${element.description}</p>
-                    <button>Узнать больше <img src="imgs/arrow-right.png"></button>
+                    <button id='${element.id}'>Узнать больше <img src="imgs/arrow-right.png"></button>
                 </li>`
             }
     });
     window.scrollTo(0, 0);
     projects.innerHTML = stroka
+    Array.from(document.querySelectorAll(`.project button`)).forEach(el =>{el.addEventListener('click', (tar)=>{
+        console.log(tar.target.id);
+        window.open(`../project/?id=${tar.target.id}`)
+    })})
+    
     
 }
 Update(currentCount)

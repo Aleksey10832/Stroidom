@@ -3,41 +3,45 @@ const left = document.querySelector('#left')
 const slider = document.querySelector('.slider-slides')
 const headName = document.querySelector('#name')
 const descr = document.querySelector("#description")
+const url = new URL(window.location.href)
+const projectId = url.searchParams.get('id')
 let currentSlide = 0
-const project = {
-    name: 'ProjectName',
-    description: 'descripton Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text TextText Text Text Text Text TextText Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-    imgs: ['../projects-data/test-project/e56f45bba057a213e77ef36e3a826dd5.jpg', '../projects-data/test-project/8b25cdef6fdddb757e8e31e54f90e48b.jpg']
+async function getProj(id){
+    const project = await (await fetch(`http://192.168.0.14:3000/projects?id=${id}`)).json()
+    project.images = project.images.map(el => `http://192.168.0.14:3000/file/${el.fileName}`)
+    headName.textContent = project.name
+    descr.textContent = project.description
+    project.images.forEach(el=>{
+        slider.insertAdjacentHTML('beforeend', `<img class="slide" src="${el}"height="20%">`)
+    })
+    const slides = Array.from(document.querySelectorAll('.slide'))
+    right.addEventListener('click', ()=>{
+        if(slides.length != currentSlide + 1){
+            currentSlide += 1
+            update(currentSlide, slides)
+        }
+        else{
+            currentSlide = 0
+            update(currentSlide, slides)
+        }
+    })
+    left.addEventListener('click', ()=>{
+        if(currentSlide != 0){
+            currentSlide -= 1
+            update(currentSlide, slides)
+        }
+        else{
+            currentSlide = slides.length - 1
+            update(currentSlide, slides)
+        }
+    })
 }
-headName.textContent = project.name
-descr.textContent = project.description
-project.imgs.forEach(el=>{
-    slider.insertAdjacentHTML('beforeend', `<img class="slide" src="${el}" width="100%" height="20%">`)
-})
 
-const slides = Array.from(document.querySelectorAll('.slide'))
-function update(count){
+
+
+function update(count, slides){
     slides.forEach(el => {
         el.style.transform = `translateX(-${el.clientWidth * count}px)`
     })
 }
-right.addEventListener('click', ()=>{
-    if(slides.length != currentSlide + 1){
-        currentSlide += 1
-        update(currentSlide)
-    }
-    else{
-        currentSlide = 0
-        update(currentSlide)
-    }
-})
-left.addEventListener('click', ()=>{
-    if(currentSlide != 0){
-        currentSlide -= 1
-        update(currentSlide)
-    }
-    else{
-        currentSlide = slides.length - 1
-        update(currentSlide)
-    }
-})
+getProj(projectId)

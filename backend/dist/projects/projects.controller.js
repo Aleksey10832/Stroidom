@@ -24,8 +24,11 @@ let ProjectsController = class ProjectsController {
     constructor(projectService) {
         this.projectService = projectService;
     }
-    async getProjects(page) {
-        if (page) {
+    async getProjects(page, id) {
+        if (id) {
+            return await this.projectService.getProjectById(+id);
+        }
+        else if (page) {
             return await this.projectService.getPaginatedProjects(page);
         }
         else {
@@ -46,8 +49,9 @@ exports.ProjectsController = ProjectsController;
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "getProjects", null);
 __decorate([

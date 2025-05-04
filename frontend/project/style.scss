@@ -8,8 +8,9 @@
     &-button{
         z-index: 1;
         position: absolute;
-        height: 100%;
-        width: 4%;
+        height: 30%;
+        width: 20%;
+        top: 36%;
         border: none;
         opacity: 20%;
         transition: 0.3s;
@@ -26,22 +27,29 @@
     }
 }
 .slide{
+    max-width: 100%;
     transition: 0.3s;
 }
 .text-head-1{
     margin-top: 8px;
     text-align: center;
-    border-bottom: 2px solid gray;
     padding-bottom: 8px;
 }
 #description{
+    border-top: 2px solid gray;
     color: gray;
     font-family: 'Regular';
-    width: 800px;
+    width: 50%;
     margin: 0 auto;
-    margin-top: 12px;
+    padding-top: 5px;
+    margin-top: 0px;
     border-bottom: 2px solid gray;
     text-align: center;
     font-size: 19px;
     padding-bottom: 9px;
+}
+@media(max-width: 630px){
+    #description{
+        width: 80%;
+    }
 }

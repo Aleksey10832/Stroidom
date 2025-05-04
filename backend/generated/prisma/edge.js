@@ -138,7 +138,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\dokuments\\курсовая\\Stroidom\\backend\\generated\\prisma",
+      "value": "E:\\курсовая\\Stroidom\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -152,7 +152,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\dokuments\\курсовая\\Stroidom\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "E:\\курсовая\\Stroidom\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
