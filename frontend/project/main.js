@@ -7,8 +7,12 @@ const url = new URL(window.location.href)
 const projectId = url.searchParams.get('id')
 let currentSlide = 0
 async function getProj(id){
-    const project = await (await fetch(`http://192.168.0.14:3000/projects?id=${id}`)).json()
-    project.images = project.images.map(el => `http://192.168.0.14:3000/file/${el.fileName}`)
+    try{
+        project = await (await fetch(`http://localhost:3000/projects?id=${id}`)).json()
+    } catch{
+        window.open('../projects', '_self')
+    }
+    project.images = project.images.map(el => `http://localhost:3000/file/${el.fileName}`)
     headName.textContent = project.name
     descr.textContent = project.description
     project.images.forEach(el=>{
@@ -44,4 +48,8 @@ function update(count, slides){
         el.style.transform = `translateX(-${el.clientWidth * count}px)`
     })
 }
-getProj(projectId)
+if(projectId){
+    getProj(projectId)
+} else{
+    window.open('../projects', '_self')
+}

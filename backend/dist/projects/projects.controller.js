@@ -24,8 +24,11 @@ let ProjectsController = class ProjectsController {
     constructor(projectService) {
         this.projectService = projectService;
     }
-    async getProjects(page, id) {
-        if (id) {
+    async getProjects(page, id, random) {
+        if (random) {
+            return await this.projectService.getLastProjects();
+        }
+        else if (id) {
             return await this.projectService.getProjectById(+id);
         }
         else if (page) {
@@ -50,8 +53,9 @@ __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('page')),
     __param(1, (0, common_1.Query)('id')),
+    __param(2, (0, common_1.Query)('random')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:paramtypes", [Number, String, String]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "getProjects", null);
 __decorate([

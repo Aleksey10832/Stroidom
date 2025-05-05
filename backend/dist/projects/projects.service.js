@@ -36,6 +36,12 @@ let ProjectsService = class ProjectsService {
             include: { images: true },
         });
     }
+    async getLastProjects() {
+        return await this.prisma.project.findMany({
+            take: 6,
+            include: { images: true }
+        });
+    }
     async createProject(projectDto, files) {
         const boba = await this.prisma.project.create({
             data: {

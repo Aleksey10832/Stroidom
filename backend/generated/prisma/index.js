@@ -139,7 +139,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\курсовая\\Stroidom\\backend\\generated\\prisma",
+      "value": "C:\\Users\\Студент\\Documents\\Куратов курсовая\\Stroidom\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -153,7 +153,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\курсовая\\Stroidom\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Студент\\Documents\\Куратов курсовая\\Stroidom\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -171,7 +171,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:123@localhost:5432/aboba?schema=public"
+        "value": "postgresql://postgres:1234@localhost:5432/aboba?schema=public"
       }
     }
   },

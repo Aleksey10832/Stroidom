@@ -3,7 +3,7 @@ import { CreateProjectDto } from './dto/create-project-dto';
 export declare class ProjectsController {
     private readonly projectService;
     constructor(projectService: ProjectsService);
-    getProjects(page: number, id: string): Promise<({
+    getProjects(page: number, id: string, random: string): Promise<({
         images: {
             id: number;
             path: string;
@@ -16,7 +16,7 @@ export declare class ProjectsController {
         name: string;
         description: string | null;
         createdAt: Date;
-    }) | ({
+    })[] | ({
         images: {
             id: number;
             path: string;
@@ -29,7 +29,7 @@ export declare class ProjectsController {
         name: string;
         description: string | null;
         createdAt: Date;
-    })[] | {
+    }) | {
         count: number;
     } | null>;
     createProject(files: Express.Multer.File[], createProjectDto: CreateProjectDto): Promise<{
