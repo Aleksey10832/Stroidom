@@ -30,3 +30,11 @@ model Image {
   project      Project? @relation(fields: [projectId], references: [id])
   projectId    Int?
 }
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  lastName String
+  password String
+  login    String @unique
+}
