@@ -39,8 +39,7 @@ let UserService = class UserService {
                 return { error: 'Пользователь с таким логином уже существует' };
             }
             else {
-                console.log(err.context);
-                return { error: '' };
+                return { error: 'ошибка сервера или данные были неверно заполненны' };
             }
         }
     }
