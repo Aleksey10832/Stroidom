@@ -1,11 +1,12 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateUserDto } from './dto/userDto';
+import { JwtService } from '@nestjs/jwt';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly _userService: UserService) {}
+  constructor(private readonly _userService: UserService, private readonly _jwtService: JwtService) {}
   @Get()
   async getUsers(@Query('login') login: string) {
     if (login) {
@@ -15,9 +16,9 @@ export class UserController {
     }
   }
   @UseGuards(AuthGuard)
-  @Get('biba')
-  getBiba() {
-    return 'biba';
+  @Get('profile')
+  async getProfile(@Request() req: Request) {
+    return await this._jwtService.verifyAsync(req.headers['authorization'].split(' ')[1]);
   }
   @Post()
   async createUser(@Body() user: CreateUserDto) {

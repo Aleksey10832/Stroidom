@@ -38,7 +38,7 @@ export declare class ProjectsController {
         description: string | null;
         createdAt: Date;
     }>;
-    deleteProject(projectId: string): Promise<{
+    deleteProject(projectId: string, imgs: string): Promise<{
         id: number;
         name: string;
         description: string | null;

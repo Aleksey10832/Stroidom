@@ -54,7 +54,7 @@ export declare class ProjectsService {
     getCount(): Promise<{
         count: number;
     }>;
-    deleteAllProjects(): Promise<import("generated/prisma").Prisma.BatchPayload>;
+    deleteAllProjects(imgs: string): Promise<import("generated/prisma").Prisma.BatchPayload>;
     deleteProjectById(id: number): Promise<{
         id: number;
         name: string;

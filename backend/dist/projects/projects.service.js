@@ -64,10 +64,12 @@ let ProjectsService = class ProjectsService {
         const count = await this.prisma.project.count();
         return { count: count };
     }
-    async deleteAllProjects() {
-        const fileNames = await this.prisma.image.findMany();
-        for (const el of fileNames) {
-            await fs.rm((0, path_1.join)(__dirname, '../..', `public/${el.fileName}`));
+    async deleteAllProjects(imgs) {
+        if (imgs == 'true') {
+            const fileNames = await this.prisma.image.findMany();
+            for (const el of fileNames) {
+                await fs.rm((0, path_1.join)(__dirname, '../..', `public/${el.fileName}`));
+            }
         }
         await this.prisma.image.deleteMany();
         return await this.prisma.project.deleteMany();

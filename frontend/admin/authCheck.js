@@ -1,8 +1,6 @@
 async function checkToken() {
-    const request = await fetch('http://localhost:3000/user/biba', {headers: {'Authorization': `Bearer ${findToken()}`}})
-    console.log(findToken())
     try{
-        const request = await fetch('http://localhost:3000/user/biba', {headers: {'Authorization': `Bearer ${findToken()}`}})
+        const request = await fetch('http://localhost:3000/user/profile', {headers: {'Authorization': `Bearer ${findToken()}`}})
         if(request.status === 401){window.open('http://127.0.0.1:5500/admin/login/', "_self")}
     } catch{
         window.open('http://127.0.0.1:5500/admin/login/', "_self")

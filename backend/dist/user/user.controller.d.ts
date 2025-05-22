@@ -1,8 +1,10 @@
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/userDto';
+import { JwtService } from '@nestjs/jwt';
 export declare class UserController {
     private readonly _userService;
-    constructor(_userService: UserService);
+    private readonly _jwtService;
+    constructor(_userService: UserService, _jwtService: JwtService);
     getUsers(login: string): Promise<{
         id: string;
         name: string;
@@ -12,7 +14,7 @@ export declare class UserController {
     } | {
         boba: number;
     } | null>;
-    getBiba(): string;
+    getProfile(req: Request): Promise<any>;
     createUser(user: CreateUserDto): Promise<{
         id: string;
         name: string;

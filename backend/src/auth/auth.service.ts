@@ -14,6 +14,6 @@ export class AuthService {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Логин или пароль не верен');
     }
-    return { acces_token: await this._jwtService.signAsync({ login: login }) };
+    return { acces_token: await this._jwtService.signAsync({ login: login, id: user.id, lastName: user.lastName, name: user.name }) };
   }
 }

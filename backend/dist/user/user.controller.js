@@ -17,10 +17,13 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const auth_guard_1 = require("../auth/auth.guard");
 const userDto_1 = require("./dto/userDto");
+const jwt_1 = require("@nestjs/jwt");
 let UserController = class UserController {
     _userService;
-    constructor(_userService) {
+    _jwtService;
+    constructor(_userService, _jwtService) {
         this._userService = _userService;
+        this._jwtService = _jwtService;
     }
     async getUsers(login) {
         if (login) {
@@ -30,8 +33,8 @@ let UserController = class UserController {
             return { boba: 1 };
         }
     }
-    getBiba() {
-        return 'biba';
+    async getProfile(req) {
+        return await this._jwtService.verifyAsync(req.headers['authorization'].split(' ')[1]);
     }
     async createUser(user) {
         return await this._userService.createUser(user);
@@ -47,11 +50,12 @@ __decorate([
 ], UserController.prototype, "getUsers", null);
 __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
-    (0, common_1.Get)('biba'),
+    (0, common_1.Get)('profile'),
+    __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UserController.prototype, "getBiba", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getProfile", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -61,6 +65,6 @@ __decorate([
 ], UserController.prototype, "createUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
-    __metadata("design:paramtypes", [user_service_1.UserService])
+    __metadata("design:paramtypes", [user_service_1.UserService, jwt_1.JwtService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

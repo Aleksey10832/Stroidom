@@ -50,10 +50,10 @@ export class ProjectsController {
     return await this.projectService.createProject(createProjectDto, files);
   }
   @Delete()
-  async deleteProject(@Query('id') projectId: string) {
+  async deleteProject(@Query('id') projectId: string, @Query('imgs') imgs: string) {
     if (projectId) {
       return await this.projectService.deleteProjectById(+projectId);
     }
-    return await this.projectService.deleteAllProjects();
+    return await this.projectService.deleteAllProjects(imgs);
   }
 }

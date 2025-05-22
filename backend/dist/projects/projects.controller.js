@@ -41,11 +41,11 @@ let ProjectsController = class ProjectsController {
     async createProject(files, createProjectDto) {
         return await this.projectService.createProject(createProjectDto, files);
     }
-    async deleteProject(projectId) {
+    async deleteProject(projectId, imgs) {
         if (projectId) {
             return await this.projectService.deleteProjectById(+projectId);
         }
-        return await this.projectService.deleteAllProjects();
+        return await this.projectService.deleteAllProjects(imgs);
     }
 };
 exports.ProjectsController = ProjectsController;
@@ -77,8 +77,9 @@ __decorate([
 __decorate([
     (0, common_1.Delete)(),
     __param(0, (0, common_1.Query)('id')),
+    __param(1, (0, common_1.Query)('imgs')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "deleteProject", null);
 exports.ProjectsController = ProjectsController = __decorate([
